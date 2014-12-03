@@ -7,7 +7,7 @@ class phpmemcachedadmin {
     source => 'puppet:///modules/phpmemcachedadmin/tmp/phpMemcachedAdmin-1.2.2-r262.tar.gz'
   }
 
-  exec { 'mkdir -p /var/www/dataphpmemcachedadmin':
+  exec { 'mkdir -p /var/www/phpmemcachedadmin':
     path => ['/bin'],
     require => File['/tmp/phpMemcachedAdmin-1.2.2-r262.tar.gz']
   }
@@ -15,6 +15,6 @@ class phpmemcachedadmin {
   exec { 'tar xzf /tmp/phpMemcachedAdmin-1.2.2-r262.tar.gz':
     cwd => '/var/www/dataphpmemcachedadmin',
     path => ['/bin'],
-    require => Exec['mkdir -p /var/www/dataphpmemcachedadmin']
+    require => Exec['mkdir -p /var/www/phpmemcachedadmin']
   }
 }
