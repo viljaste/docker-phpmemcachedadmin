@@ -1,0 +1,5 @@
+phpmemcachedadmin:
+  image: simpledrupalcloud/phpmemcachedadmin:dev
+  hostname: phpmemcachedadmin
+  ports:
+    - "80:80"
