@@ -1,0 +1,5 @@
+# docker-phpmemcachedadmin
+
+## License
+
+**MIT**
