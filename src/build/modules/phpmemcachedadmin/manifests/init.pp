@@ -14,7 +14,7 @@ class phpmemcachedadmin {
 
   exec { 'tar xzf /tmp/phpMemcachedAdmin-1.2.2-r262.tar.gz':
     cwd => '/var/www/dataphpmemcachedadmin',
-    path => ['/usr/bin'],
+    path => ['/bin'],
     require => Exec['mkdir -p /var/www/dataphpmemcachedadmin']
   }
 }
