@@ -2,7 +2,7 @@
 
 A [Docker](https://docker.com/) container for [phpMemcachedAdmin](https://code.google.com/p/phpmemcacheadmin/).
 
-## phpMemcachedAdmin (STABLE BRANCH)
+## phpMemcachedAdmin (DEVELOPMENT BRANCH)
 
 ### Run the container
 
@@ -13,13 +13,14 @@ Using the `docker` command:
       -h "${CONTAINER}" \
       -p 80:80 \
       -d \
-      simpledrupalcloud/phpmemcachedadmin:latest
+      simpledrupalcloud/phpmemcachedadmin:dev
 
 Using the `fig` command
 
     TMP="$(mktemp -d)" \
       && git clone http://git.simpledrupalcloud.com/simpledrupalcloud/docker-phpmemcachedadmin.git "${TMP}" \
       && cd "${TMP}" \
+      && git checkout dev \
       && sudo fig up
 
 #### Connect directly to Memcached server by linking with another Docker container
@@ -30,14 +31,15 @@ Using the `fig` command
       -p 80:80 \
       --link memcached \
       -d \
-      simpledrupalcloud/phpmemcachedadmin:latest
+      simpledrupalcloud/phpmemcachedadmin:dev
 
 ### Build the image
 
     TMP="$(mktemp -d)" \
       && git clone http://git.simpledrupalcloud.com/simpledrupalcloud/docker-phpmemcachedadmin.git "${TMP}" \
       && cd "${TMP}" \
-      && sudo docker build -t simpledrupalcloud/phpmemcachedadmin:latest . \
+      && git checkout dev \
+      && sudo docker build -t simpledrupalcloud/phpmemcachedadmin:dev . \
       && cd -
       
 ## License
