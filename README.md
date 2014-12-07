@@ -12,6 +12,7 @@ Using the `docker` command:
       --name "${CONTAINER}" \
       -h "${CONTAINER}" \
       -p 80:80 \
+      -p 443:443 \
       -d \
       simpledrupalcloud/phpmemcachedadmin:dev
 
@@ -29,6 +30,7 @@ Using the `fig` command
       --name "${CONTAINER}" \
       -h "${CONTAINER}" \
       -p 80:80 \
+      -p 443:443 \
       --link memcached \
       -d \
       simpledrupalcloud/phpmemcachedadmin:dev
@@ -41,7 +43,7 @@ Using the `fig` command
       && git checkout dev \
       && sudo docker build -t simpledrupalcloud/phpmemcachedadmin:dev . \
       && cd -
-      
+
 ## License
 
 **MIT**

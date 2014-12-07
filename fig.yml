@@ -3,3 +3,4 @@ phpmemcachedadmin:
   hostname: phpmemcachedadmin
   ports:
     - "80:80"
+    - "443:443"
