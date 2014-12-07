@@ -1,5 +1,5 @@
 class phpmemcachedadmin {
-  file { '/var/www/phpmemcachedadmin/Config/Memcache.php':
+  file { '/httpd/data/Config/Memcache.php':
     ensure => present,
     content => template('phpmemcachedadmin/Memcache.php.erb')
   }
