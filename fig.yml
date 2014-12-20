@@ -9,7 +9,7 @@ phpmemcachedadmin:
   environment:
     - SERVER_NAME=localhost
 phpmemcachedadmindata:
-  image: simpledrupalcloud/data:dev
+  image: simpledrupalcloud/data:latest
   hostname: phpmemcachedadmindata
   volumes:
     - /phpmemcachedadmin/ssl/certs
