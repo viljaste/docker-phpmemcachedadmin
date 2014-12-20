@@ -1,5 +1,5 @@
 class phpmemcachedadmin::php {
-  require phpmemcachedadmin::packages
+  require phpmemcachedadmin::php::packages
 
   file { '/etc/php5/apache2/php.ini':
     ensure => present,
