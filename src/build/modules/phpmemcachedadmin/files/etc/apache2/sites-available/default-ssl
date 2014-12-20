@@ -1,0 +1,16 @@
+<IfModule mod_ssl.c>
+  <VirtualHost *:443>
+    DocumentRoot /phpmemcachedadmin/data
+
+    <Directory "/phpmemcachedadmin/data">
+      Options Indexes FollowSymLinks MultiViews
+      AllowOverride All
+      Order allow,deny
+      Allow from all
+    </Directory>
+
+    SSLEngine on
+    SSLCertificateFile /phpmemcachedadmin/ssl/certs/phpmemcachedadmin.crt
+    SSLCertificateKeyFile /phpmemcachedadmin/ssl/private/phpmemcachedadmin.key
+  </VirtualHost>
+</IfModule>

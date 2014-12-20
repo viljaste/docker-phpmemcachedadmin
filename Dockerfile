@@ -1,4 +1,4 @@
-FROM simpledrupalcloud/httpd:dev
+FROM simpledrupalcloud/base:dev
 
 MAINTAINER Simple Drupal Cloud <support@simpledrupalcloud.com>
 
@@ -8,13 +8,11 @@ ADD ./src /src
 
 RUN apt-get update
 
-RUN chmod +x /src/build.sh
 RUN /src/build.sh
+RUN /src/clean.sh
 
-RUN rm -rf /tmp/*
-RUN rm -rf /var/lib/apt/lists/*
-
-RUN apt-get clean
+VOLUME ["/phpmemcachedadmin/ssl/certs"]
+VOLUME ["/phpmemcachedadmin/ssl/private"]
 
 EXPOSE 80
 EXPOSE 443

@@ -4,3 +4,13 @@ phpmemcachedadmin:
   ports:
     - "80:80"
     - "443:443"
+  volumes_from:
+    - phpmemcachedadmindata
+  environment:
+    - SERVER_NAME=localhost
+phpmemcachedadmindata:
+  image: simpledrupalcloud/data:dev
+  hostname: phpmemcachedadmindata
+  volumes:
+    - /phpmemcachedadmin/ssl/certs
+    - /phpmemcachedadmin/ssl/private

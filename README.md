@@ -2,17 +2,24 @@
 
 A [Docker](https://docker.com/) container for [phpMemcachedAdmin](https://code.google.com/p/phpmemcacheadmin/).
 
-## phpMemcachedAdmin (DEVELOPMENT BRANCH)
-
-### Run the container
+## Run the container
 
 Using the `docker` command:
+
+    CONTAINER="phpmemcachedadmindata" && sudo docker run \
+      --name "${CONTAINER}" \
+      -h "${CONTAINER}" \
+      -v /phpmemcachedadmin/ssl/certs \
+      -v /phpmemcachedadmin/ssl/private \
+      simpledrupalcloud/data:dev
 
     CONTAINER="phpmemcachedadmin" && sudo docker run \
       --name "${CONTAINER}" \
       -h "${CONTAINER}" \
       -p 80:80 \
       -p 443:443 \
+      --volumes-from phpmemcachedadmindata \
+      -e SERVER_NAME="localhost" \
       -d \
       simpledrupalcloud/phpmemcachedadmin:dev
 
@@ -24,18 +31,27 @@ Using the `fig` command
       && git checkout dev \
       && sudo fig up
 
-#### Connect directly to Memcached server by linking with another Docker container
+## Connect directly to Memcached server by linking with another Docker container
+
+    CONTAINER="phpmemcachedadmindata" && sudo docker run \
+      --name "${CONTAINER}" \
+      -h "${CONTAINER}" \
+      -v /phpmemcachedadmin/ssl/certs \
+      -v /phpmemcachedadmin/ssl/private \
+      simpledrupalcloud/data:dev
 
     CONTAINER="phpmemcachedadmin" && sudo docker run \
       --name "${CONTAINER}" \
       -h "${CONTAINER}" \
       -p 80:80 \
       -p 443:443 \
-      --link memcached \
+      --volumes-from phpmemcachedadmindata \
+      --link memcached:memcached \
+      -e SERVER_NAME="localhost" \
       -d \
       simpledrupalcloud/phpmemcachedadmin:dev
 
-### Build the image
+## Build the image
 
     TMP="$(mktemp -d)" \
       && git clone http://git.simpledrupalcloud.com/simpledrupalcloud/docker-phpmemcachedadmin.git "${TMP}" \
@@ -43,6 +59,22 @@ Using the `fig` command
       && git checkout dev \
       && sudo docker build -t simpledrupalcloud/phpmemcachedadmin:dev . \
       && cd -
+
+## Back up phpMemcachedAdmin data
+
+    sudo docker run \
+      --rm \
+      --volumes-from phpmemcachedadmindata \
+      -v $(pwd):/backup \
+      simpledrupalcloud/data:latest tar czvf /backup/phpmemcachedadmindata.tar.gz /phpmemcachedadmin/ssl/certs /phpmemcachedadmin/ssl/private
+
+## Restore phpMemcachedAdmin data from a backup
+
+    sudo docker run \
+      --rm \
+      --volumes-from phpmemcachedadmindata \
+      -v $(pwd):/backup \
+      simpledrupalcloud/data:latest tar xzvf /backup/phpmemcachedadmindata.tar.gz
 
 ## License
 
