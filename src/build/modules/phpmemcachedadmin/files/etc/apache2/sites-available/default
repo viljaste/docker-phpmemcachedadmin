@@ -1,7 +1,7 @@
 <VirtualHost *:80>
-  DocumentRoot /var/www/phpmemcachedadmin
+  DocumentRoot /phpmemcachedadmin/data
 
-  <Directory "/var/www/phpmemcachedadmin">
+  <Directory "/phpmemcachedadmin/data">
     Options Indexes FollowSymLinks MultiViews
     AllowOverride All
     Order allow,deny

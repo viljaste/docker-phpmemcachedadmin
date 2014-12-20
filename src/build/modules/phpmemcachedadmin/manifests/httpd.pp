@@ -1,14 +1,22 @@
 class phpmemcachedadmin::httpd {
-  require phpmemcachedadmin::packages
+  require phpmemcachedadmin::httpd::packages
   require phpmemcachedadmin::httpd::supervisor
 
+  exec { 'mkdir -p /phpmemcachedadmin/data':
+    path => ['/bin']
+  }
+
+  exec { 'usermod -d /phpmemcachedadmin/data www-data':
+    path => ['/usr/sbin']
+  }
+
+  exec { '/bin/bash -c "a2enmod actions"': }
+  exec { '/bin/bash -c "a2enmod fastcgi"': }
+  exec { '/bin/bash -c "a2enmod vhost_alias"': }
+  exec { '/bin/bash -c "a2enmod rewrite"': }
   exec { '/bin/bash -c "a2enmod ssl"': }
 
   file { '/etc/apache2/sites-enabled/000-default':
-    ensure => absent
-  }
-
-  file { '/var/www/index.html':
     ensure => absent
   }
 
@@ -34,5 +42,11 @@ class phpmemcachedadmin::httpd {
     ensure => link,
     target => '/etc/apache2/sites-available/default-ssl',
     require => File['/etc/apache2/sites-available/default-ssl']
+  }
+
+  file { '/etc/apache2/apache2.conf':
+    ensure => present,
+    source => 'puppet:///modules/phpmemcachedadmin/etc/apache2/apache2.conf',
+    mode => 644
   }
 }

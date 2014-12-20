@@ -1,8 +1,8 @@
 <IfModule mod_ssl.c>
   <VirtualHost *:443>
-    DocumentRoot /var/www/phpmemcachedadmin
+    DocumentRoot /phpmemcachedadmin/data
 
-    <Directory "/var/www/phpmemcachedadmin">
+    <Directory "/phpmemcachedadmin/data">
       Options Indexes FollowSymLinks MultiViews
       AllowOverride All
       Order allow,deny
@@ -10,7 +10,7 @@
     </Directory>
 
     SSLEngine on
-    SSLCertificateFile /etc/ssl/certs/ssl-cert-snakeoil.pem
-    SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
+    SSLCertificateFile /phpmemcachedadmin/ssl/certs/phpmemcachedadmin.crt
+    SSLCertificateKeyFile /phpmemcachedadmin/ssl/private/phpmemcachedadmin.key
   </VirtualHost>
 </IfModule>
