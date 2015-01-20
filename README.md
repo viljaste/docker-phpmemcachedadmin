@@ -66,7 +66,7 @@ Using the `fig` command
       --rm \
       --volumes-from phpmemcachedadmindata \
       -v $(pwd):/backup \
-      simpledrupalcloud/data:latest tar czvf /backup/phpmemcachedadmindata.tar.gz /phpmemcachedadmin/ssl/certs /phpmemcachedadmin/ssl/private
+      simpledrupalcloud/base:latest tar czvf /backup/phpmemcachedadmindata.tar.gz /phpmemcachedadmin/ssl/certs /phpmemcachedadmin/ssl/private
 
 ## Restore phpMemcachedAdmin data from a backup
 
@@ -74,7 +74,7 @@ Using the `fig` command
       --rm \
       --volumes-from phpmemcachedadmindata \
       -v $(pwd):/backup \
-      simpledrupalcloud/data:latest tar xzvf /backup/phpmemcachedadmindata.tar.gz
+      simpledrupalcloud/base:latest tar xzvf /backup/phpmemcachedadmindata.tar.gz
 
 ## License
 
