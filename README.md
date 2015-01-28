@@ -9,8 +9,7 @@ Using the `docker` command:
     CONTAINER="phpmemcachedadmindata" && sudo docker run \
       --name "${CONTAINER}" \
       -h "${CONTAINER}" \
-      -v /phpmemcachedadmin/ssl/certs \
-      -v /phpmemcachedadmin/ssl/private \
+      -v /phpmemcachedadmin \
       simpledrupalcloud/data:latest
 
     CONTAINER="phpmemcachedadmin" && sudo docker run \
@@ -35,8 +34,7 @@ Using the `fig` command
     CONTAINER="phpmemcachedadmindata" && sudo docker run \
       --name "${CONTAINER}" \
       -h "${CONTAINER}" \
-      -v /phpmemcachedadmin/ssl/certs \
-      -v /phpmemcachedadmin/ssl/private \
+      -v /phpmemcachedadmin \
       simpledrupalcloud/data:latest
 
     CONTAINER="phpmemcachedadmin" && sudo docker run \
@@ -64,7 +62,7 @@ Using the `fig` command
       --rm \
       --volumes-from phpmemcachedadmindata \
       -v $(pwd):/backup \
-      simpledrupalcloud/base:latest tar czvf /backup/phpmemcachedadmindata.tar.gz /phpmemcachedadmin/ssl/certs /phpmemcachedadmin/ssl/private
+      simpledrupalcloud/base:latest tar czvf /backup/phpmemcachedadmindata.tar.gz /phpmemcachedadmin
 
 ## Restore phpMemcachedAdmin data from a backup
 
