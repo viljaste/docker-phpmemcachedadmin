@@ -12,5 +12,4 @@ phpmemcachedadmindata:
   image: simpledrupalcloud/data:dev
   hostname: phpmemcachedadmindata
   volumes:
-    - /phpmemcachedadmin/ssl/certs
-    - /phpmemcachedadmin/ssl/private
+    - /phpmemcachedadmin

@@ -3,7 +3,7 @@ class phpmemcachedadmin {
     require phpmemcachedadmin::httpd::ssl
   }
 
-  file { '/phpmemcachedadmin/data/Config/Memcache.php':
+  file { '/var/www/Config/Memcache.php':
     ensure => present,
     content => template('phpmemcachedadmin/Memcache.php.erb')
   }

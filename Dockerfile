@@ -12,8 +12,7 @@ RUN apt-get update
 RUN /src/build.sh
 RUN /src/clean.sh
 
-VOLUME ["/phpmemcachedadmin/ssl/certs"]
-VOLUME ["/phpmemcachedadmin/ssl/private"]
+VOLUME ["/phpmemcachedadmin"]
 
 EXPOSE 80
 EXPOSE 443
